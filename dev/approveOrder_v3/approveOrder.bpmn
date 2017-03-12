@@ -50,7 +50,7 @@
     <bpmn:startEvent id="StartEvent_1" name="Order&#10;received" camunda:asyncBefore="true">
       <bpmn:outgoing>SequenceFlow_1tz0k8t</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:serviceTask id="Task_0pyjcdd" name="Validate Order" camunda:class="com.satspeedy.bpm.LoggerDelegate">
+    <bpmn:serviceTask id="Task_0pyjcdd" name="Validate Order" camunda:asyncBefore="true" camunda:class="com.satspeedy.bpm.LoggerDelegate">
       <bpmn:incoming>SequenceFlow_1tz0k8t</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0yj6abs</bpmn:outgoing>
     </bpmn:serviceTask>
