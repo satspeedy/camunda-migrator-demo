@@ -1,6 +1,7 @@
 package com.satspeedy.bpm;
 
 import org.apache.ibatis.logging.LogFactory;
+import org.camunda.bpm.engine.repository.ProcessDefinition;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.camunda.bpm.engine.test.ProcessEngineRule;
 import org.camunda.bpm.extension.process_test_coverage.junit.rules.TestCoverageProcessEngineRuleBuilder;
@@ -54,6 +55,12 @@ public class InMemoryH2Test {
     ProcessInstance processInstance = processEngine().getRuntimeService().startProcessInstanceByKey(PROCESS_DEFINITION_KEY, startParams);
     assertThat(processInstance).isWaitingAt("StartEvent_1");
     execute(job());
+
+    ProcessDefinition processDefinition = repositoryService().createProcessDefinitionQuery().processDefinitionId(processInstance.getProcessDefinitionId()).singleResult();
+    if ("approveOrder_v3".equals(processDefinition.getVersionTag())) {
+      assertThat(processInstance).isWaitingAt("Task_0pyjcdd");
+      execute(job());
+    }
 
     assertThat(processInstance).isWaitingAt("Task_117ilnv");
     Map params = new HashMap();
