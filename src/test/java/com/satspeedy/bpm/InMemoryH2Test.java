@@ -52,6 +52,8 @@ public class InMemoryH2Test {
     startParams.put("valid", true);
     
     ProcessInstance processInstance = processEngine().getRuntimeService().startProcessInstanceByKey(PROCESS_DEFINITION_KEY, startParams);
+    assertThat(processInstance).isWaitingAt("StartEvent_1");
+    execute(job());
 
     assertThat(processInstance).isWaitingAt("Task_117ilnv");
     Map params = new HashMap();
