@@ -33,7 +33,7 @@
     <bpmn:endEvent id="EndEvent_1c57rtn" name="Order &#10;rejected">
       <bpmn:incoming>SequenceFlow_0bhpcuu</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:startEvent id="StartEvent_1" name="Order&#10;received">
+    <bpmn:startEvent id="StartEvent_1" name="Order&#10;received" camunda:asyncBefore="true">
       <bpmn:outgoing>SequenceFlow_1tz0k8t</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:userTask id="Task_117ilnv" name="Approve Order" camunda:assignee="demo">
